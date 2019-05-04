@@ -2,6 +2,7 @@
 #include <pwd.h>
 #include <stdarg.h>
 #include <stdio.h>
+#include <string.h>
 #include <sys/types.h>
 #include <sys/utsname.h>
 #include <unistd.h>
@@ -29,31 +30,38 @@
 int main(int argc, char *argv[])
 {
 #ifdef __GNU_LIBRARY__
-    const char *libc = "glibc";
-    const char *libcversion = STR(__GLIBC__) "." STR(__GLIBC_MINOR__);
+    char *lib = "glibc";
+    char *libversion = STR(__GLIBC__) "." STR(__GLIBC_MINOR__);
 #else
 #ifdef __UCLIBC__
-    const char *libc = "uclibc";
-    const char *libcversion = STR(__UCLIBC_MAJOR__) "." STR(__UCLIBC_MINOR__);
+    char *lib = "uclibc";
+    char *libversion = STR(__UCLIBC_MAJOR__) "." STR(__UCLIBC_MINOR__);
 #else
-    const char *libc = "unknown";
-    const char *libcversion = "0.0";
+    char *lib = "unknown";
+    char *libversion = "0.0";
 #endif
 #endif
+
     struct passwd *passwd = getpwuid(getuid());
-    const char *username = passwd->pw_name;
-    const char *shellname = passwd->pw_shell;
-    const char *userinfo = passwd->pw_gecos;
+    char *name = passwd->pw_name;
+    if (!name) name = "unknown";    
+    char *shell = passwd->pw_shell;
+    if (!shell) shell = "unknown";
+    char *gecos = passwd->pw_gecos;
+    if (!gecos) gecos = "unknown";
     
-    char hostname[HOST_NAME_MAX + 1];
-    gethostname(hostname, sizeof(hostname));
+    char host[HOST_NAME_MAX+1];
+    gethostname(host, sizeof(host));
+    if (!host) strcpy("unknown\0", host);
     
     struct utsname utsname;
     uname(&utsname);
-    const char *osname = utsname.sysname;
-    const char *osversion = utsname.release;
+    char *os = utsname.sysname;
+    if (!os) os = "unknown";
+    char *osrelease = utsname.release;
+    if (!osrelease) osrelease = "0.0";
     
-    #include "config.h"
+#include "config.h"
     
     return 0;
 }
