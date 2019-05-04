@@ -1,3 +1,4 @@
+#include <libgen.h>
 #include <limits.h>
 #include <pwd.h>
 #include <stdarg.h>
@@ -29,24 +30,32 @@
 
 int main(int argc, char *argv[])
 {
-#ifdef __GNU_LIBRARY__
+#if defined __GNU_LIBRARY__
     char *lib = "glibc";
     char *libversion = STR(__GLIBC__) "." STR(__GLIBC_MINOR__);
-#else
-#ifdef __UCLIBC__
+#elif defined __UCLIBC__
     char *lib = "uclibc";
     char *libversion = STR(__UCLIBC_MAJOR__) "." STR(__UCLIBC_MINOR__);
+#elif defined  __dietlibc__
+    char *lib = "dietlibc";
+    char *libversion = "unknown";
+#elif defined __NEWLIB_STDIO_H
+    char *lib = "newlib";
+    char *libversion = "unknown";
+#elif defined USR_KLIBC_STDIO_STDIONT_H
+    char *lib = "klibc";
+    char *libversion = "unknown";
 #else
-    char *lib = "unknown";
-    char *libversion = "0.0";
-#endif
+    char *lib = "muslc";
+    char *libversion = "unknown";
 #endif
 
     struct passwd *passwd = getpwuid(getuid());
     char *name = passwd->pw_name;
     if (!name) name = "unknown";    
-    char *shell = passwd->pw_shell;
-    if (!shell) shell = "unknown";
+    char *shellpath = passwd->pw_shell;
+    if (!shellpath) shellpath = "unknown";
+    char *shell = basename(shellpath);
     char *gecos = passwd->pw_gecos;
     if (!gecos) gecos = "unknown";
     
@@ -59,8 +68,8 @@ int main(int argc, char *argv[])
     char *os = utsname.sysname;
     if (!os) os = "unknown";
     char *osrelease = utsname.release;
-    if (!osrelease) osrelease = "0.0";
-    
+    if (!osrelease) osrelease = "unknown";
+
 #include "config.h"
     
     return 0;

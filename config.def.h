@@ -4,6 +4,7 @@ Functions you can use to get information:
     name	username
     host	hostname
     shell	user's default shell
+    shellpath	path to the user's default shell
     gecos	user GECOS field, usually the full name
     lib		system libc
     libversion  system libc version
