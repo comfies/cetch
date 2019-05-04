@@ -1,6 +1,10 @@
 /**
-Functions you can use to get information:
 
+Functions:
+    logo(name)	render the logo with name, <name> (should only be called once, and before item(1))
+    item(...)	printf, but with extra formatting (should be used for all information)
+
+Variables:
     name	username
     host	hostname
     shell	user's default shell
@@ -13,8 +17,10 @@ Functions you can use to get information:
     
 **/
 
+logo(os);
+
 item(BOLD BLUE "%s" RESET "@" BOLD BLUE "%s", name, host)
-item(BOLD GREEN "name" BOLD BLACK "%11s", gecos)
-item(BOLD GREEN "libc" BOLD BLACK "%11s", lib)
-item(BOLD GREEN "os" BOLD BLACK "%13s", os)
-item(BOLD GREEN "shell" BOLD BLACK "%10s", shell)
+item(BOLD GREEN "name" BOLD BLACK "%14s", gecos)
+item(BOLD YELLOW "libc" BOLD BLACK "%14s", lib)
+item(BOLD RED "os" BOLD BLACK "%16s", os)
+item(BOLD MAGENTA "shell" BOLD BLACK "%13s", shell)

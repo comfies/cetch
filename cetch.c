@@ -28,6 +28,28 @@
     printf(RESET"\n"); \
 } while (0);
 
+typedef struct logo {
+    unsigned width, height;
+    char *name;
+    char **body;
+} Logo;
+
+#include "logos.h"
+
+unsigned width, height;
+
+void logo(char *name) {
+    for (int i = 0; i < sizeof(Logos) / sizeof(Logo); i++) {
+        if (!strcmp(Logos[i].name, name)) {
+            width = Logos[i].width;
+            height = Logos[i].height;
+            for (int j = 0; j < sizeof(Logos[i].body) / sizeof(char*); j++) {
+                printf(Logos[i].body[j]);
+            }
+        }
+    }
+};
+
 int main(int argc, char *argv[])
 {
 #if defined __GNU_LIBRARY__
