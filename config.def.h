@@ -14,7 +14,7 @@ Functions you can use to get information:
 **/
 
 item(BOLD BLUE "%s" RESET "@" BOLD BLUE "%s", name, host)
-item(BOLD GREEN "NM" BOLD BLACK "%12s", gecos)
-item(BOLD GREEN "LC" BOLD BLACK "%12s", lib)
-item(BOLD GREEN "OS" BOLD BLACK "%12s", os)
-item(BOLD GREEN "SH" BOLD BLACK "%12s", shell)
+item(BOLD GREEN "name" BOLD BLACK "%11s", gecos)
+item(BOLD GREEN "libc" BOLD BLACK "%11s", lib)
+item(BOLD GREEN "os" BOLD BLACK "%13s", os)
+item(BOLD GREEN "shell" BOLD BLACK "%10s", shell)
