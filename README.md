@@ -2,13 +2,13 @@
 <h6 align="center">a fetch tool written in C, because God has been dead for
 a very long time</h6>
 
-#### Usage
+### Usage
 
 cetch skips out on any bloat: there's no options, parameters, runtime
 configs. the only thing to do when using cetch is to call it, it's that
 simple.
 
-#### Configuration
+### Configuration
 
 configuration is done through the `config.h` file in the repository.
 `config.h` is generated from the default `config.def.h`. the
