@@ -8,7 +8,7 @@
 #include <sys/utsname.h>
 #include <unistd.h>
 
-#define CSI         "\033["
+#define CSI       "\033["
 #define BLACK   CSI "30m"
 #define RED     CSI "31m"
 #define GREEN   CSI "32m"
