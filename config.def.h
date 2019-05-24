@@ -21,7 +21,11 @@ Variables:
     libversion  system libc version
     os		the system's uname
     osrelease	the system's uname release number
-    
+Linux only:
+	procs	running processes
+	freeram	free system memory in MiB
+	totalram	total system memory in MiB
+	uptime	system uptime
 **/
 
 // logo(os); [DEPRECATED]
@@ -31,3 +35,7 @@ item(BOLD GREEN "name" BOLD BLACK "%14s", gecos)
 item(BOLD YELLOW "libc" BOLD BLACK "%14s", lib)
 item(BOLD RED "os" BOLD BLACK "%16s", os)
 item(BOLD MAGENTA "shell" BOLD BLACK "%13s", shell)
+//item(BOLD BLUE "memory" BOLD BLACK "%8.4g MiB", totalram)
+//item(BOLD GREEN "uptime" BOLD BLACK "%12s", uptime)
+//item(BOLD YELLOW "processes" BOLD BLACK "%9d", procs)
+
