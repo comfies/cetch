@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
     char *osrelease = utsname.release;
     if (!osrelease) osrelease = "unknown";
 
-#if defined __linux__
+#if defined __GNU_LIBRARY__ && __LINUX__
 #include <sys/sysinfo.h>
 #include <math.h>
 	struct sysinfo info;
@@ -78,7 +78,6 @@ int main(int argc, char *argv[])
 	char uptime[9];
 	snprintf(uptime, 9, "%.2d:%.2d:%.2d", uptime_s/3600,
 		uptime_s%3600/60, uptime_s%60);
-//	procs includes threads
 	short procs = info.procs;
 	double freeram = info.freeram/pow(1024,2);
 	double totalram = info.totalram/pow(1024,2);
