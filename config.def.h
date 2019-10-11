@@ -1,14 +1,9 @@
 /**
 
-NOTE: Using logos along with your information is not currently supported, there
-was an attempt to implement it in earlier versions of cetch but they were
-pretty terrible... but if you want logo support, contributions are always
-welcome ^-^.
-
 Functions:
-    logo(name)	render the logo with name, <name> (should only be called once,
-        and before item(1)) [DEPRECATED]
-    item(...)	printf, but with extra formatting (should be used for all
+    logo(logotext, width, height)
+        render the logotext on the left of the system info
+    item(...)	        printf, but with extra formatting (should be used for all
         information)
 
 Variables:
@@ -28,7 +23,15 @@ Linux only:
 	uptime	system uptime
 **/
 
-// logo(os); [DEPRECATED]
+/* Example Logo
+logo(BOLD RED
+"/\\,-'''''-,/\\\n"
+"\\_)       (_/\n"
+"|           |\n"
+"|           |\n"
+" ;         ;\n"
+"  '-_____-'\n",
+    13, 7); */
 
 item(BOLD BLUE "%s" RESET "@" BOLD BLUE "%s", name, host)
 item(BOLD GREEN "name" BOLD BLACK "%14s", gecos)
