@@ -28,6 +28,11 @@
     printf(RESET"\n"); \
 } while (0);
 
+// Define HOST_NAME_MAX on systems where it isnt available (freebsd, macos, etc)
+#ifndef HOST_NAME_MAX
+#define HOST_NAME_MAX 255
+#endif
+
 int main(int argc, char *argv[])
 {
 #if defined __GNU_LIBRARY__
