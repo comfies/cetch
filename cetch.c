@@ -24,14 +24,25 @@
 #define _STR(x) #x
 
 #define item(...) do { \
+    printf("\033[%iC", logowidth); \
     printf(__VA_ARGS__); \
-    printf(RESET"\n"); \
+    printf(RESET"\033E"); \
+    linenum++; \
 } while (0);
 
 // Define HOST_NAME_MAX on systems where it isnt available (freebsd, macos, etc)
 #ifndef HOST_NAME_MAX
 #define HOST_NAME_MAX 255
 #endif
+
+int logowidth;
+int logoheight;
+
+void logo(char* text, int width, int height) {
+    logoheight = height;
+    logowidth = width+1;
+    printf("%s\033[%iA", text, height-1);
+}
 
 int main(int argc, char *argv[])
 {
@@ -87,8 +98,9 @@ int main(int argc, char *argv[])
 	double freeram = info.freeram/pow(1024,2);
 	double totalram = info.totalram/pow(1024,2);
 #endif
-
+    int linenum = 0;
 #include "config.h"
-    
+    if (logowidth)
+        printf("\033[%iB", logoheight - linenum);
     return 0;
 }
