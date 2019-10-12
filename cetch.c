@@ -48,25 +48,18 @@ int main(int argc, char *argv[])
 {
 #if defined __GNU_LIBRARY__
     char *lib = "glibc";
-    char *libversion = STR(__GLIBC__) "." STR(__GLIBC_MINOR__);
 #elif defined __UCLIBC__
     char *lib = "uclibc";
-    char *libversion = STR(__UCLIBC_MAJOR__) "." STR(__UCLIBC_MINOR__);
 #elif defined  __dietlibc__
     char *lib = "dietlibc";
-    char *libversion = "unknown";
 #elif defined __NEWLIB_STDIO_H
     char *lib = "newlib";
-    char *libversion = "unknown";
 #elif defined USR_KLIBC_STDIO_STDIONT_H
     char *lib = "klibc";
-    char *libversion = "unknown";
 #elif defined(unix) || defined(__unix__) || defined(__unix)
     char *lib = "libc";
-    char *libversion = "unknown";
 #else
     char *lib = "muslc";
-    char *libversion = "unknown";
 #endif
 
     struct passwd *passwd = getpwuid(getuid());
