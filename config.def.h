@@ -23,15 +23,7 @@ Linux only:
 	uptime	system uptime
 **/
 
-/* Example Logo
-logo(BOLD RED
-"/\\,-'''''-,/\\\n"
-"\\_)       (_/\n"
-"|           |\n"
-"|           |\n"
-" ;         ;\n"
-"  '-_____-'\n",
-    13, 7); */
+#include "logo/linux.h"
 
 item(BOLD BLUE "%s" RESET "@" BOLD BLUE "%s", name, host)
 item(BOLD GREEN "name" BOLD BLACK "%14s", gecos)
