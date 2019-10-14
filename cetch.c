@@ -61,6 +61,8 @@ int main(int argc, char *argv[])
 #elif defined USR_KLIBC_STDIO_STDIONT_H
     char *lib = "klibc";
     char *libversion = "unknown";
+#elif defined(unix) || defined(__unix__) || defined(__unix)
+    char *lib = "libc";
 #else
     char *lib = "muslc";
     char *libversion = "unknown";
