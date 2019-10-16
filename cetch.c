@@ -9,6 +9,8 @@
 #include <unistd.h>
 
 #define CSI       "\033["
+
+// Foreground colors
 #define BLACK   CSI "30m"
 #define RED     CSI "31m"
 #define GREEN   CSI "32m"
@@ -17,6 +19,16 @@
 #define MAGENTA CSI "35m"
 #define CYAN    CSI "36m"
 #define WHITE   CSI "37m"
+// Background colors
+#define BLACKBG   CSI "40m"
+#define REDBG     CSI "41m"
+#define GREENBG   CSI "42m"
+#define YELLOWBG  CSI "43m"
+#define BLUEBG    CSI "44m"
+#define MAGENTABG CSI "45m"
+#define CYANBG    CSI "46m"
+#define WHITEBG   CSI "47m"
+
 #define BOLD    CSI "1m"
 #define RESET   CSI "0m"
 
