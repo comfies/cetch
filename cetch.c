@@ -8,7 +8,13 @@
 #include <sys/utsname.h>
 #include <unistd.h>
 
+#if defined(LIBSYSINFO) || defined __GNU_LIBRARY__ && __LINUX__
+#include <sys/sysinfo.h>
+#endif
+
 #define CSI       "\033["
+
+// Foreground colors
 #define BLACK   CSI "30m"
 #define RED     CSI "31m"
 #define GREEN   CSI "32m"
@@ -17,6 +23,16 @@
 #define MAGENTA CSI "35m"
 #define CYAN    CSI "36m"
 #define WHITE   CSI "37m"
+// Background colors
+#define BLACKBG   CSI "40m"
+#define REDBG     CSI "41m"
+#define GREENBG   CSI "42m"
+#define YELLOWBG  CSI "43m"
+#define BLUEBG    CSI "44m"
+#define MAGENTABG CSI "45m"
+#define CYANBG    CSI "46m"
+#define WHITEBG   CSI "47m"
+
 #define BOLD    CSI "1m"
 #define RESET   CSI "0m"
 
@@ -87,9 +103,7 @@ int main(int argc, char *argv[])
     char *osrelease = utsname.release;
     if (!osrelease) osrelease = "unknown";
 
-#if defined __GNU_LIBRARY__ && __LINUX__
-#include <sys/sysinfo.h>
-#include <math.h>
+#if defined(LIBSYSINFO) || defined __GNU_LIBRARY__ && __LINUX__
 	struct sysinfo info;
 	sysinfo(&info);
 	long uptime_s = info.uptime;
@@ -97,8 +111,8 @@ int main(int argc, char *argv[])
 	snprintf(uptime, 9, "%.2d:%.2d:%.2d", uptime_s/3600,
 		uptime_s%3600/60, uptime_s%60);
 	short procs = info.procs;
-	double freeram = info.freeram/pow(1024,2);
-	double totalram = info.totalram/pow(1024,2);
+	double freeram = info.freeram/1024;
+	double totalram = info.totalram/1024;
 #endif
     int linenum = 0;
 #include "config.h"
