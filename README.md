@@ -1,22 +1,15 @@
-<h2 align="center">cetch</h2>
-<h6 align="center">a fetch tool written in C, because God has been dead for
-a very long time</h6>
+# cetch
 
-<img align="right" src="scrot.png" width="150px"/>
+<img align="left" src="scrot.png">
 
-### Usage
+`cetch` is an (esoteric) application for UNIX systems. It emulates the
+functionality of the popular "fetch" type of tools with suckless-esque
+source-based configuration as opposed to itself being a script or being
+configurable through a script. Originally written soley to piss of xent,
+it has since been used as a farm for Hacktoberfest pull requests and a
+test-bed for stupid ideas to use in C code.
 
-cetch skips out on any bloat: there's no options, parameters, runtime
-configs. the only thing to do when using cetch is to call it, it's that
-simple.
-
-### Configuration
-
-please see [`config.def.h`](/config.def.h) for instruction on how to
-configure. when compiling, it's copied over to `config.h` which is the file
-that the user (you) will use for configuring cetch.
-
-### To-Do
-
-- [ ] Implement logos (left-aligned *and* right-aligned).
-- [ ] Get the window manager (optionally supported)
+I know you'll love using it, because I hated every minute of writing it,
+and yes, so did woosh. If you'd like to contribute, go ahead, I will
+pull any changes as long as they aren't profoundly stupid. Heck, I won't
+even test them first.
