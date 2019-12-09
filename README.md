@@ -17,7 +17,7 @@ As previously stated, all configuration is done through a `config.h`,
 which should (and will) be copied from `config.def.h`. Almost every option
 *should* work, though some are Linux:tm: only. (These should be
 automagically disabled if running on anything else, but hey, it probably
-won't). `cetch` also supporrts logos for Debian, FreeBSD, Linux (Tux), NixOS,
+won't). `cetch` also supports logos for Debian, FreeBSD, Linux (Tux), NixOS,
 and Void Linux: colors and all.
 
 **If you run `make` and get some sort of error with sysinfo,
