@@ -8,7 +8,7 @@
 #include <sys/utsname.h>
 #include <unistd.h>
 
-#if defined(LIBSYSINFO) || defined __GNU_LIBRARY__ && __LINUX__
+#if defined(LIBSYSINFO) || defined __GNU_LIBRARY__ && __linux__
 #include <sys/sysinfo.h>
 #endif
 
@@ -57,7 +57,7 @@ int logoheight;
 void logo(char* text, int width, int height) {
     logoheight = height;
     logowidth = width+1;
-    printf("%s\033[%iA", text, height-1);
+    printf("%s\033[%iA", text, height);
 }
 
 int main(int argc, char *argv[])
@@ -103,20 +103,21 @@ int main(int argc, char *argv[])
     char *osrelease = utsname.release;
     if (!osrelease) osrelease = "unknown";
 
-#if defined(LIBSYSINFO) || defined __GNU_LIBRARY__ && __LINUX__
+#if defined(LIBSYSINFO) || defined __GNU_LIBRARY__ && __linux__
+#define DIVISOR 1048576
 	struct sysinfo info;
 	sysinfo(&info);
 	long uptime_s = info.uptime;
 	char uptime[9];
-	snprintf(uptime, 9, "%.2d:%.2d:%.2d", uptime_s/3600,
+	snprintf(uptime, 9, "%.2ld:%.2ld:%.2ld", uptime_s/3600,
 		uptime_s%3600/60, uptime_s%60);
-	short procs = info.procs;
-	double freeram = info.freeram/1024;
-	double totalram = info.totalram/1024;
+	unsigned short procs = info.procs;
+	unsigned long freeram = info.freeram/DIVISOR;
+	unsigned long totalram = info.totalram/DIVISOR;
 #endif
     int linenum = 0;
 #include "config.h"
-    if (logowidth)
-        printf("\033[%iB", logoheight - linenum);
+//    if (logowidth)
+//        printf("\033[%iB", logoheight - linenum);
     return 0;
 }
