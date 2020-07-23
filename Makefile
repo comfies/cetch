@@ -1,12 +1,14 @@
-DESTDIR= /usr
-nosysinfo ?= -I/usr/local/include -DLIBSYSINFO -lm -lsysinfo -L/usr/local/lib
+.PHONY: sysinfo install
 
-cetch: cetch.c config.h
-	$(CC) cetch.c -o cetch $(nosysinfo)
+cetch: cetch.c config.h logos.h
+	$(CC) cetch.c -o cetch
+
+sysinfo: cetch.c config.h logos.h
+	$(CC) cetch.c -o cetch -DSYSINFO -lsysinfo
 
 install: cetch cetch.1
-	install -Dm755 cetch $(DESTDIR)/bin/cetch
-	install -Dm644 cetch.1 $(DESTDIR)/local/share/man/cetch.1
-	
+	install -Dm755 cetch /usr/bin/cetch
+	install -Dm644 cetch.1 /usr/local/share/man/cetch.1
+
 config.h:
 	cp config.def.h config.h
