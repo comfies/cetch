@@ -112,7 +112,7 @@ void get_sysinfo()
     snprintf(uptime, 9, "%.2ld:%.2ld:%.2ld", uptime_s / 3600, uptime_s % 3600 / 60, uptime_s % 60);
     procs = info.procs;
     freeram = info.freeram / divisor;
-    totalram = info.freeram / divisor;
+    totalram = info.totalram / divisor;
 }
 #endif
 
